@@ -4,7 +4,8 @@ let socket;
 
 export const initiateSocket = () => {
   // Uses Vite proxy in development or resolves to same host in production
-  socket = io("/", {
+  const socketUrl = import.meta.env.VITE_SOCKET_URL || "/";
+  socket = io(socketUrl, {
     transports: ["websocket"],
   });
   console.log("Connecting socket...");
